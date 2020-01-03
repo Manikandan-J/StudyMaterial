@@ -1,0 +1,294 @@
+Java Script:
+DataTypes and Variables
+We can declare variable by using three methods in js
+1)By using Var
+ var name= "Manikandan";
+2)By using 'let'
+let name = "Manikandan";   
+3)By using const
+const name = "manikandan";
+Storing values with assignment operators
+var a = 5;
+Compound Assignment with Augmented Division
+ var a =5;
+ a /= 5;
+concatenation of String is done by using + operator
+we can find the String length by using varName.length
+string are immutable
+funtions:
+ function myfunc(name)
+{
+     return name + name ;
+}
+
+console.log(myfunc("Manikandan));
+Arrays:
+Arrays Allows us to store multiple values to store in a variable
+ var arrayName = ["Manikandan","Jegadeesh",22];
+We can declare Multiple arrays too
+var mulArray = [["Jegadeesh","KasiPandiyan",49],["VinayagaSundari","Jegadeesh",42],["Manikandan","Jegadeesh",22],["VinodKumar","Jegadeesh",17]];
+Array Push:
+We can push the element at the end of an array using push method in array
+Array pop();
+This is used to Pop Out(remove) the last element of an array
+Array shift();:
+This method is used to remove the first element of the array
+Array unshift():
+This method is used to add the element first to an array
+Global Scope and Functions:
+Scope represents the visibility of variable
+While we declare a variable out side the function then the variable has the global scope...That means we can use the variable anywhere in this program
+if we not declare a var key word for a varaible..Even though it's declare inside the function but it has a global scope
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Stand in Line in Js
+function nextInline(array ,item)
+{
+    array.push(item);
+    return item;
+}
+var testArr = [1,'Mani',3,4,5,true];
+console.log("Before: "+ testArr);
+console.log(nextInline(testArr,6));
+console.log("After: "+ JSON.stringify(testArr));
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Equality Operator
+==
+Strict Equality Operator:
+===
+reason for equality and strict equality is 
+if we compare 3 == '3' it gives the result true because auto type conversion is happend
+but 3==='3' gives false....so It's called as Strict Equality Operator
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+switch statements:
+switch(value)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+we can delete object using delete obj.prop;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Check the property for an obj:
+var school =
+{
+   name: 'xyz school',
+   buildings: 5,
+   'teachers': 23,
+   students: 490,
+};
+function checkObj(checkProp)
+{
+    if(school.hasOwnProperty(checkProp))
+    {
+        return  "Yes It's present";
+    }
+    else{
+        return "No the object property is unavailable";
+    }
+}
+
+console.log(checkObj(name));
+
+By using obj.hasOwnProperty(property) we can check that
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ get a copy of a function:
+var objectCopy = JSON.parse(JSON.stringify(collection));
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Math.random() used to generate the random decimal number betweeb 0 and 1
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Difference between the Var and Let Keyword
+
+if we declare a varaible inside a block using var key word within a func then that varaible can also be accessed outside the block of same func while in let we can;t use that variable beyond the block scope
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+While we using 'const' key word Make sure that varaible name must be in caps
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Object Mutuation:
+Object mutuation is nothing but the even the array variable declare in an const we can the mute the elements in the array using their indexes
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+We can prevent the Object mutuation by using  Object.freeze(objName);
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Use Arrow Functions to Write Concise Anonymous Functions:
+Anonyomous Function is the Function where it don't have a name
+var varName = function()
+{
+return new demo();
+}
+
+we can also write the above by using arrow 
+var varName = () => new demo();
+we can use anonyomous func with argument using Arrow func
+var myFunc = (arr1,arr2) => arr1.concat(arr2);
+we can use concatenation for merging array too
+-------------------------------------------------------
+const array1 = [4,2,4,-5,8.5,-2];
+const listVar = (array) => {
+     const result = array.filter(num => Number.isInteger(num) && num >0);
+     return result;
+};
+console.log(listVar(array1)); 
+we can use rest Operator(... ) for holding the parameters values in function
+Use 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USe Destructing Assignment to Assign Varaibles from Objects 
+var desObj = {
+    x: 10,
+    y: 20,
+    z: 30,
+}
+ 
+let {
+    x : val1,
+    y : val2,
+    z: val3,
+} = desObj;
+
+console.log ('From the Destructive object VAl Variables ' + val1 + ' '+ val2+' '+val3);
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Destructing Assignment with Nested Objects
+let libertyMutuals =
+{
+    manager: {
+        name: 'Jhon',
+        age:  32,
+    },
+    teamLead:
+    {
+       name: 'Jacob',
+       age: 28,
+    },
+}
+   projectDetails(libertyMutuals);
+ function projectDetails(details){
+
+    let {teamLead : {name: teamLeadName} } = details;
+    console.log( teamLeadName);
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use Destructuring Assignment to Assign Variables from Arrays
+const [a,b,,c] = [1,2,3,4,5,6];
+console.log(z,x,y);
+output:
+1,2,4
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use Destructing Assignment with the Rest Operator
+const source = [1,2,3,4,5,6,7];
+function removeFirstTwo(list)
+{
+   const[ , ,...arr] = list //Now the array elements were copied without first two elements
+   return arr;
+}
+console.log(arr);
+console.log(source);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use destruction Assignment to Pass an Object as a Function's Parameters
+const stats = {
+  max : 56.78,
+  min : 2.56,
+  average: 23.78,
+};
+const half = (function(){
+        return function half({max,min}) // here we can pass the only the required parameter from ther object..here destructoion happens
+{
+       return(max + min)/2.0
+}
+})();
+console.log(stats);
+console.log(half(stats));
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Create String Using Template Literals
+const person = {
+    name: "Zodiac Hasbro",
+    age:  56
+};
+const greeting = `Hello,my name is ${}person.name!
+I am ${person.age} years old.`;
+console.log(greeting);
+
+const result = {
+   success: ["sdss","dfsfds","dsfdsfdsfdf"],
+   failure: ["rewwef","refdsase","dsfwe"],
+   skipped: ["fdsfsefsf","esfwfafad","dferattf],
+};
+
+function makeList(arr)
+{
+    const  resultArray = [];
+    for(let i = 0;i< arr.length; i++)
+{
+   resultArray.push(`<li class =" text-warning">${arr[i]}`);
+}
+   return resultArray;
+}
+const resultArray = makeList(result.failure);
+console.log(resultArray);
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Write Conscise Object Literal Declarations Using Simple Fields
+when we want to return the object from the function..in that returning object ,the both proprties names are same as the parameters then ES6 gives a simple Solution for us
+const createPerson = (name,age,gender)=>({name,age,gender});
+console.log(createPerson("Zodiac Hasbro",56,"male"));
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+write Concise Declatrative Functions:
+const bicycle = {
+  gear: 2,
+  setGear(newGear)   ///Instead of using function key word and semi colon decleration we can simply use like this
+{
+   this.gear = newGear;
+}
+};
+bicycle.setGear(3);
+console.log(bicycle.gear);
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+use class Syntax to Define a Constructor Function
+class SpaceShuttle
+{
+  constructor(targetPlanet)
+  {
+    this.targetPlanet = targetPlanet;
+  }
+
+}
+var zeus = new SpaceShuttle('Jupiter');
+console.log(zeus.targetPlanet);
+function makeClass()
+{
+    let vegtableName;
+    class Vegetable {
+        
+        constructor(name)
+        {
+            this.vegtableName= name;
+        }
+    }
+    return Vegetable;
+}
+let Vegetable = makeClass();
+const carrot = new Vegetable('carrot');
+console.log(carrot.vegtableName);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use getters and setters to Control Access to an Object
+function makeTemperatueClass()
+{
+    class Thermostat
+    {
+        constructor(temp)
+        {
+            this._temperature = 5/9 * (temp-32);
+        }
+        get tempValue()
+        {
+            return this._temperature;
+        }
+        set tempValue(newVal)
+        {
+            this._temperature = newVal;
+        }
+    }
+    return Thermostat;
+}
+const tempObj = makeTemperatueClass();
+const thermos = new tempObj(76);
+let tempVal = thermos.tempValue;
+console.log(tempVal);
+thermos.tempValue = 56;
+tempVal = thermos.tempValue;
+console.log(tempVal);
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use export to Reuse a Code Block

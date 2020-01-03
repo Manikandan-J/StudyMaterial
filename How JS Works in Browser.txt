@@ -1,0 +1,4 @@
+DOM Interepreter
+CSS Interepreter
+Java Script Engine
+above three are called JIT--> Just in Time Compilers

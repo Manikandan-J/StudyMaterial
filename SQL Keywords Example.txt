@@ -1,0 +1,180 @@
+---------------------------------------------Select Statement ------------------------------------
+Select 
+  name,
+ unit price,
+ unit price*1.1 As "New_price"
+From Products;
+
+---------------------Filter Using Where Clause---------------------------------------------------
+Select *
+From Orders
+Where year>="2019-01-01"
+
+------------------------------------Filter Using AND Operator----------------------------------
+Select *
+From Order_items Where order=6 And total_price>30
+
+
+--------------------------------------Filter using In KeyWord(for More OR Operator)------------------------
+Select *
+From products
+Where quantity In (49,38,72);
+
+-------------------------------------Filter using BETWEEN KEYWORD---------------------------------------------
+Select *
+From customers 
+Where date_of_birth Between '1990-01-01' AND '2000-01-01';
+
+
+
+----------------------------------------------Like Keyword with % operator-----------------------------------------
+Select *
+From Customers
+Where last_name Like 'b%'(Selecting Lastname Starts with caharacter "b")
+
+Select *
+From customers
+Where adresses Like '%TRAIL%' or addresses Like '%AVENUE%'
+
+Select *
+From customers
+Where phone_number Like '%9'
+
+
+-----------------------------------------------REGEXP Keyword-----------------------------------------------------------
+Select *
+From customers
+Where first_name REGEXP 'ELKA|AMBUR'
+
+Select *
+From customers
+Where last_name REGEXP 'EY$|ON$'   //$ is for Ends with and ^ is for Starts with
+
+Select *
+From customers
+Where last_name REGEXP '^MY|SE'
+
+Select *
+From customers
+Where last_name REGEXP 'B[RU]'
+
+
+----------------------------------------------Null Keyword--------------------------------------------------------------------
+
+Select *
+from orders
+Where delivery_date is NULL
+
+----------------------------------ORDER BY Keyword used for Sorting--------------------------------------------------------------------------
+Select order_id,product_id,Quantity,unit_price
+from order
+Where order_id = 2 
+Order By unit_price * quantity DESC
+
+------------------------------------------Limit Keyword---------------------------------------------------------------------
+Select *
+from customer
+Order By points DESC
+Limit 3
+
+-----------------------------------Inner Join ---------------------------------------------------------
+Select order_id,p.product_id,quantity,oi.unit_price
+From order_items oi
+Join products p
+ON oi.product_id=p.product_id
+
+-----------------------------------------Multiple Joins-------------------------------------------------------------------------------------
+Select 
+      p.date,
+      p.invoice_id,
+      p.amount,
+      c.name,
+      pm.name
+From payments p
+Join clients c
+On p.client_id = c.client_id
+Join payments_method pm
+On p.payment_method = pm.payment_method_id
+
+--------------------------------------------Outer Join----------------------------------------------------------
+Select 
+       p.product_id,p.name,o.quantity
+from product p
+Left Join order o
+   On p.product_id = o.product_id
+
+Select *
+from Order o
+join customer c
+ On o.customer_id = c.customer_id
+left Join  shippers sh
+ On o.shipper_id = sh.shipper_id
+Join order_statuses os
+ ON o.status = os.order_status_id
+
+----------------------------------------Using Statement-------------------------------------------------------------------------------------------------------
+ Select 
+       o.order_id,
+       c.first_name
+From orders o
+Join customers c
+Using (customer_id) 
+
+Select 
+      p.date,
+      c.client_name As client,
+      p.amount,
+      p.mode_of_payment As name
+From payments p
+join clients c
+Using (payment_id)
+
+--------------------------------------Cross Join------------------------------------------------------------------------------------------------------------------
+explicit syntax:
+Select *
+From shippers s
+Cross join products p
+
+implicit syntax:
+select *
+from Shippers,producrts
+---------------------------------------Union----------------------------------------------------------------------------------------------
+Select 
+       order_id,
+       order_date,
+       'Active'  as status
+from orders o
+Where order_date>= '2019-01-01'
+Union
+Select 
+        order_id,
+        order_date,
+        'Archieved' as  status
+from orders o
+Where order_date < '2019-01-01';
+
+Select 
+       customer_id,
+       first_name,
+       points,
+       'Bronze' AS type
+From customers 
+Where points < 2000
+Union
+Select 
+       customer_id,
+       first_name,
+       points,
+       'Silver' AS type
+From customers 
+Where points Between 2000 and 3000
+Union
+Select 
+       customer_id,
+       first_name,
+       points,
+       'Gold' AS type
+From customers 
+Where points > 3000
+
+Order By first_name

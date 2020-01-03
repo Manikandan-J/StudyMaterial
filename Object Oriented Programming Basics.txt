@@ -1,0 +1,22 @@
+Object Oriented Programming
+
+4 Pillars of Object Oriented Programming
+ 1)Encapsulation
+ 2)Abstraction
+ 3)Inheritance
+ 4)Polymorphism
+
+1)Encapsulation:
+Object Contains Properties and method
+We group related functions and properties together
+Reduce Complexity
+and increase Re usuability
+2)Abstraction:
+Hide the complex functionalties to user by creating a simple Interface and Reduce the Impact of change in code
+Isolate Impact of changes
+3)Inheritance:
+It is used to elimenate the redundant.
+Using the proprties and functionalities of common one
+4)PolyMorphism:
+Polymorphism means Many form
+eliminates nasty Switch case Statements

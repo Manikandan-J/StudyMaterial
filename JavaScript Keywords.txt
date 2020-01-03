@@ -1,0 +1,106 @@
+Keywords in Js
+
+Declaring Varaiable
+1)let
+2)const
+
+Primitive Types inJs
+String 
+Number
+Boolean
+undefined
+null
+
+-------------------------------------------------------------------
+typeOf keyword is used to change the varaiable type in js
+
+Reference type in js
+Object
+Array
+Function
+----------------------------------------------------------------------------
+Object
+
+Object Literal ;
+let person = {},//{} is called object literal
+Object Literal have key Value pair....Keys are consider as a properties ..Simpley the variable elements in the object
+We can Change the value of the varaible using '.' operator suffix with the respective object name
+We can also change the varaiable values using [] Square Braces
+object['variableName'] = 'newValue';
+--------------------------------------------------------------------------------------------
+Arrays:
+List of Objects
+'[]' is called as Array Literal
+Java Script Array is a type of Objects
+---------------------------------------------------------------------------------------
+Functions:
+function functionName()
+{
+   function Body;
+}
+-------------------------------------------------------------------------------------
+Fundametals of Objects
+Creating Objects
+Factories and Constructors
+Primitives and Reference Types
+Working with Properties
+Private Properties
+Getters/Setters
+--------------------------------------------------------------------------------------
+Creating Obejcts
+const circle = 
+{
+  radius: 12,
+  draw: function()
+{
+   return 3.14*this.radius;
+}
+}
+ console.log(circle.draw);
+
+If an Object having more functionalities then we termed as a behaviour
+
+creating Object Using Factory function
+
+Commonly If a function return something is called as Factory Function
+function createCircle(radius)
+{
+   return
+{
+    radius,
+    draw: function()
+{
+    console.log('draw');
+}
+};
+}
+const circle = createCircle(1);
+------------------------------------------------------------------------------
+Creating Obejct Using Constructor Function
+
+Commonly if a function using this and new Keyword is called as Constructor Function
+function Circle(radius)
+{
+   this.radius = radius;
+   this.draw = function()
+   {
+   console.log('draw');
+   }
+}
+const another  = new Circle(1);
+----------------------------------------------------------------------------------------
+Constructor Property
+
+------------------------------------------------------------
+Functions are Objects
+--------------------------------------------------------------------------
+Enumerating in JS
+for(let varaiable in object)
+{
+    
+}
+------------------------------------------------------------------------
+Abstraction in Js:
+Abstraction means show only the essentials
+In java Script Scope is Temporary
+and Closure lasts

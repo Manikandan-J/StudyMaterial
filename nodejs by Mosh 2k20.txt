@@ -1,0 +1,161 @@
+node js or node is a crossplatform or runtime environment for JavaScript
+node has a asynchronus architecture by default
+
+global scope functions
+
+console.log();
+setTimeout();
+clearTimeout();
+setInterval();
+clearInterval();
+ above all the global scope Objects are declerad default in window object(incommon) but in node we can call all the object using global object
+node modules
+
+we have to use modularity in node for sustainable program development without any problem
+every file in the node is consider as module..
+
+Every application atleast have one module have main Module
+
+export and import of module in js
+in export module
+module.exports.object = func() or member
+in import module
+const objName = require('./exportModuleName');
+console.log(objName.anotherModuleMemeber);
+
+logger.js
+var j =;
+var url = 'http://mylogger.io/log';
+
+function log(message)
+{
+    console.log(message);
+}
+
+module.exports.log = log;
+module.exports.name1 = 'mani';
+
+app.js
+var logger = require('./logger');
+function nodeHello(name)
+{
+    console.log('Hello node by '+ name);
+}
+
+nodeHello('Magician');
+console.log(logger);
+console.log(logger.name1);
+logger.log('Magicain mani');
+
+-----------------------------------------------------------------------------------
+we can use jshint app.js for finding the error line
+--------------------------------------------------------------------------------------------------
+Using Path Module
+const path = require('path');
+
+var pathObj = path.parse(__filename); ///gives output related to path of file
+console.log(pathObj);
+
+output:
+{
+  root: 'C:\\',
+  dir: 'C:\\Users\\761106\\Documents\\node\\first-app',
+  base: 'app.js',
+  ext: '.js',
+  name: 'app'
+}
+---------------------------------------------
+Using Os Module
+const os = require('os');
+let totalMemory = os.totalmem;
+let freeMemory = os.freemem;
+console.log(`the total amd free memory is ${totalMemory} and ${freeMemory}`);
+output:
+the total amd free memory is 8493047808 and 1724440576
+.........................................................................................
+While we using JS in browser it only uses the doc obj but while using in it can access the computer info to ...like above os example :)
+.............................................................................................
+File System in Node (documentation for node is really help ful in developing)
+ 
+const fs = require('fs');
+const files = fs.readdirSync('./');
+console.log(files);
+fs.readdir('./',function(err,files)
+{
+    if(err != null)
+    {
+        console.log('error',err);
+    }
+    else
+    {
+        console.log('Result',files);
+    }
+});
+
+output:
+[ 'app.js', 'logger.js' ]
+Result [ 'app.js', 'logger.js' ]
+............................................................................................
+Events Module:
+Event : A signal that something has happened
+in node we have a class called http that listens the web server 
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
+//Register a Listener
+emitter.on('messageLogged',function(){
+
+  console.log("Listener called");
+});
+//Raise an Event
+emitter.emit('messageLogged');
+output: Listener called
+-------------------------------------------------------------------------------------------
+logger.js
+const EventEmitter = require('events');
+class Logger extends EventEmitter
+{
+   constructor()
+   {
+       let obj ={
+           name: 'peter',
+           password: 'parker'
+       }
+   }
+    log(message)
+    {
+        console.log(message);
+       this.emit('messageLogged',{name: 'peter',password:'parker'}); 
+    }
+   
+}
+
+module.exports = Logger;
+
+app.js
+const EventEmitter = require('events');
+
+const Logger =require('./logger');
+const logger = new Logger();
+ logger.on ('messageLogged',(arg) =>{
+    console.log("Listener called",arg);
+
+});
+logger.log('message');
+
+Output:
+message
+Listener called { name: 'peter', password: 'parker' }
+---------------------------------------------------------------------------------------------------------------------------
+HTTP Module:
+app.js
+const http = require('http');
+const server = http.createServer((req,res)=>{
+    if(req.url==='/')
+    {
+        res.write('Hello Magician');
+        res.end(); 
+    }
+});
+
+server.listen(3000);
+console.log('Listening on port 3000');
