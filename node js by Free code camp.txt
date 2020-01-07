@@ -1,0 +1,124 @@
+we can also print the output of node by using process.stdout.write(Math.random().toString());
+when you put console.log(arguments); It produces ouput of array object with five elements
+node has wrapping module
+//WRAPPING,IIFE
+//(function(exports,require,module,_filename,_dirname){  ------->Node uses this wrapper
+console.log(arguments);
+//return
+//}})();
+wherever you put exports that func() will return module.exports
+require is module dependency similar in java import and exports
+node evaluate the file only once ..remaining times it read from cookies
+package.json file is file is used to manage meta info of your node project
+npm --> node package manager
+npm init is used to create package.json file
+running ECMA Script and using Import and Export Statement in node js by using following change
+in m1.js
+export default {
+    func1: () =>{
+        console.log('hello Magician')
+    },
+};
+in m2.js
+import m1 from './m1.js';
+m1.func1();
+m1.func1();
+m1.func1();
+run in terminal--> node --experimental-modules m2.js
+add this in package.json "type": "module";
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Node Directory
+we can install the libraries from node package manager by using npm i liberaryName or from Git hub..Liberary is nothing but the pre defined functionalites.
+In package.json the scripts tag is run tag that is used tp npm start...
+ex:
+"
+scripts":{
+  "start": "node -r esm server.js",  //I use "start" : "node --experimental-module main.js"
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Setting Server:
+import http from 'http';
+const server = http.createServer();
+// server.listen(3000);  /// this is used to make the server to listen to some port
+setTimeout(()=>{console.log('Manikandan the Magician')},5000); // This is used to setting the time out ...after 5 sec that log is execute in console
+const server = http.createServer();
+
+server.on('request',(req,res)=>{                           // Route Handling
+
+       res.write('Hello Magician');
+       res.end();
+});
+
+
+server.listen(3000);
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Using Express Librery
+import  express from 'express';
+const server = express();
+server.get('/',(req,res)=>{
+
+     res.send({name: 'Magician',work:'wizard'});
+});
+server.get('/favicon.*',(req,res)=>{
+
+    res.send({name: 'Magician',work:'wizard'});
+});
+
+server.listen(3000);
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+difference between import and require:
+import is a static one it import the module at the first but in require it dynamically import the module, whenever it want.In ECMA script there is a built in func called import() that is similar to the require ...It produces promises.
+require is synchronous one..While require is asynchronous.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+restarting nodde application while we save that application using nodemon ----//nodemon is stands for node moniter
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Call back and Promises
+if we stuck up with hazardous error then use process.exit(1);
+call back function in the host function ...which perform some action
+import { exec } from 'child_process';
+exec('ls',(err,stdout,stderr) => {           // In this call back with three parameters
+
+   if(err)
+   {
+       process.exit(1);
+   }
+});
+
+promises:
+we can promisify the other process by importing the util
+import utils from 'util';
+import {exec} from 'child_process';
+
+const execPromisify = utils.promisify(exec);
+const main= async() =>{
+const { stdout,stderr} = await execPromisify('ls /');
+console.log(stdout);
+}
+
+main().catch(()=>{
+    console.log('Error caught mr.Magician');
+});
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Event Emitter
+import EventEmitter from 'events';
+
+const eventEmitter = new EventEmitter();
+eventEmitter.on('change',()=>{
+    console.log('Heloo Magician...Event is emitted');
+});
+eventEmitter.emit('change');
+Everything in node the event handling is based on event emitter.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Streams is used to process the memory..Without streams if we send some large file then it occupies the memory....So streams are important concept..stream is only chunk...node is stream ready
+there are more streams including read,write,transform etc...Transform stream is very important stream
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scaling in  node application:
+cluster module provides load balance to the application...
+Every Process must be a cluster we can also uses pm2 instead of clusters.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+debugging in node js
+
+node --inspect-brk fileName.js  // then check with chrome dev tools inspect
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+modern java script
+
