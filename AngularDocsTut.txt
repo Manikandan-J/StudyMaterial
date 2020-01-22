@@ -1,0 +1,162 @@
+Angular is fully based on TypeScript and HTML,client side programming.....
+
+Angular uses IVY engine for visual rendering.-------------------------It is only available in Angular 8
+
+Angular app is defined by set of ng modules..where ng modules is the basic building block of angular application....It provides compilation context for components..It collect related code into fucntional sets.
+-------------------------------------------------------------------------
+an angular app atleast have a root module
+Components:
+   components define views...which are sets of screen elements that Angualr can use by using promgramming logics
+Services:
+   components uses services......In which service providers can be injected to into components as dependencies...thats why code is reusable and efficient in angular.
+both the components and services are nothing but classes with decorators.
+---------------------------------------------------------------------------------
+Meta data for the components:
+   It is associated with templates that defines view...
+template consists of ordinary HTML and Angular directives and binding markuop elements that is used before rendering.
+
+Meta data for service;
+   we already knew that service uses DI...service provide information Angular needs to make it available to components through DI.
+
+Router in Angular used for navigating between pages
+----------------------------------------------------------------------------------------
+componets and it's templates define the view...A component contains view hierarchy....
+one host view comprises of many view
+NgModules are from angular core view  like: import { NgModule }     from '@angular/core';
+  
+    It's totally unrelated to java script modules : ) :)......but we can uses java script modules(i.e.. Complementary modules)...We already knew that in java Script all the files are called as modules and the object defined in that file is belonging to that module..when we declare a objects with exports then it is publically available and it can be importated in other modules
+
+import { NgModule }     from '@angular/core';
+import { AppComponent } from './app.component';
+
+export class AppModule { }
+-------------------------------------------------------------------------------------------
+Angular libraries 
+ Angular loads as a collection of JavaScript modules. You can think of them as library modules. Each Angular library name begins with the @angular prefix. Install them with the node package manager npm and import parts of them with JavaScript import statements.
+-------------------------------------------------------------------------------------------
+note:  simple core of angular:
+  
+      Angular Resolves directives and binding syntax resolved in template before rendering.
+      Here views are arranged in an hierarchial manner.
+      Template --> view,  using decorators on componet to  add meta data in it.
+      Component --> TypeScript (logistics). use Directives and markup in component to perform logics.
+      Both the view and template defines the angular view.
+      Dependency injector provides service to a component (Data handling)
+      Routing is used to show and hide views in view hierarchy.
+---------------X---Overview Over----------------X-----------------------------------------
+Modules in Angular:
+      module(in general): a set of independent units that is used to construct the complex structure  like: toy building blocks.
+      module(in Group): It contains group of compoenents,directives,pipes and services.
+ Angular apps are  modular and It has a own modularity system called "NgModules"...
+
+NgModules are containers for a cohesive block of code dedicated to an application domain,a work flow,or  aclosely related capabilities.
+     @NgModule Meta Data() :
+        NgModules consists of imports,providers,declarations,export and bootstrap.....
+when component is created is it's directly associated with a single view called host view.
+host view is the root 
+/* refer NgModule @ the begining of this document
+------------------------------------------------------------------------------------------
+Components : 
+component controlls the view ..Each componets contains each views accordingly.
+   we specify the application logics in the class inside the component....this class interacts to api of properties and methods.
+   Component improves the user experiences
+example: 
+       below file is src/app/hero-list.component.ts (class)
+
+export class HeroListComponent implements OnInit {                                      // Hero List Component is created and it's exported default 
+  heroes: Hero[];                                                                       // here heros is a property that contains Hero Array
+  selectedHero: Hero;                                                                  //this selected hero property holds the Hero object  emits from the function
+
+  constructor(private service: HeroService) { }                                        //In constructor we declare service || Used for Data manipulation.
+
+  ngOnInit() {                                                                        // this method is the default method and call at first automatically when that component is rendered.
+    this.heroes = this.service.getHeroes();                                           // here heroes property assigned with a list hero data from service by using method.
+  }
+
+  selectHero(hero: Hero) { this.selectedHero = hero; }                              // this method is used to set the value for the property that declared using this Keyword 
+}
+@Component Decorator:
+      It provides meta data
+      This Identiifes the immediate class below to the decorator
+      this provides meta data to the components ..Where to get the code blocks,and properties and It defines where to inject.
+
+example: below file from src/app/hero-list.component.ts (metadata)
+@Component({
+  selector:    'app-hero-list',        // this css selector tells the component to insert the instance in this tag <app-hero-list> in html
+  templateUrl: './hero-list.component.html',      // relative address to component html template.
+  providers:  [ HeroService ]        // this specifies the which service instance we going to use in this component.
+})
+export class HeroListComponent implements OnInit {
+/* . . . */
+}
+
+Template and views:
+      views are arranged hierarchically...this allows to hide and show the UI accordingly...The templae immediately associated with compenent defines that component's host view....Componenents also have view hierarchy, which contains embedded views hosted by other components.
+    Template is also like as HTML expect that It also contains Angular template elements like ngFor,ngIf Logic  : ) ....and data binding properties.
+   Data binding:
+      Pull and push is easily done with angular
+      One way Data binding:
+          1)Property Binding  // in template we use interpolation {{value}} while in component we use [property] = "value"; component to view
+          2)Event Binding.    //  like as event handler ..View to component.
+       Two way data binding
+         3)two way binding  [(ngModel)]  // affects both the values in template and view simultaneously.
+Example: from src/app/hero-list.component.html (binding)
+<li>{{hero.name}}</li>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<li (click)="selectHero(hero)"></li>
+
+explanation from Documentation:
+     The {{hero.name}} interpolation displays the component's hero.name property value within the <li> element.
+
+The [hero] property binding passes the value of selectedHero from the parent HeroListComponent to the hero property of the child HeroDetailComponent.
+
+The (click) event binding calls the component's selectHero method when the user clicks a hero's name.
+data binding is also important in communication between child and parent component
+--------------------------------------------------------------------------------------------------------------------------
+Pipes:
+       It's allows us to declare display value transformation in view....A class with @Pipe decorter used to transform the input values into output values.
+Angular has inbuilt pipes for certain functionalities..It comprsises of several API's
+    '|' is called as the pipe operators
+     o/p of one Pipefunc can be transformed to another pipeFunc....It also takes arguments
+example:  <!-- Default format: output 'Jun 15, 2015'-->
+          <p>Today is {{today | date}}</p>
+---------------------------------------------------------------------------------------------------
+Directives:
+   Directives in genral : It comprises the set of rules.
+   Directives is nothing but the set of rules that specifies how DOM should work in Angular
+   it uses @Directive() decorator
+   @Component extends the @Directive.....so Component is also a directive
+   In angular there are two categories of built in directives: 1)Structural Directive and 2)Attribute Directive..we can also define our own directives.
+
+Structural Directives:
+    This Directives alter the layout in DOM by adding,removing and also replacing
+   example for structural directivel:
+     <li *ngFor="let hero of heroes"></li>
+    <app-hero-detail *ngIf="selectedHero"></app-hero-detail>
+ Attribute Directives:
+     This type of directives alters the apearance or behavior of DOM....This attribute is look like HTML Atributes in view
+example:
+      <input [(ngModel)]="hero.name">
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Introduction to service and dependency injection:
+  Services is  awell defined class for particular operation and it holds the data,function and feature for the apps that needed.
+  Services increases the modulartity of apps
+  Angular distinguishes services and components..Where as components only deals with the application logic and view...and Components improves the user experiences.
+Components assign works to services like fetching the data ,validation and logging from console etc....So service is nothing but the processing class....we can make the service availale to all components...Service have different providers for different usage.
+Injector Creates Dependencies
+provider tells an injector to how to obtain or create dependencies
+@Injectable() decorator used to inject the service as a dependency in component.
+Injector allows the service available throughout the angular app.
+If the component uses the services then the services are declared inside the constructor for that component.
+Injector is responsible for maintaining and reuses the dependency in angular app.
+    When Angular creates a new instance of a component class, it determines which services or other dependencies that component needs by looking at the constructor parameter types. For example, the constructor of HeroListComponent needs HeroService.
+  
+    When angular app  discover the which components need which dependency services...If the instance for the service is already created in the injector then It uses that instance otherwise it creates new instance inaccorrdance with registererd service provider.
+
+Injector is like a box which contains service instances and it inject them into respective components.
+
+Providing Services:
+    we have to register atleast one provider of any services to make it usable universally throught the angular app.
+    When we create services the angular itself defaultly created
+     By default, the Angular CLI command ng generate service registers a provider with the root injector for your service by including provider metadata in the @Injectable() decorator.   // :) :) It uses root injector to register the provider.
+

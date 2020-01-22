@@ -1,0 +1,11 @@
+Observables:
+       It is used to transmitting the messages b/w publishers and subscribers.
+       Publishers: Who sends Data....
+       Subscribers: Who recives data.....
+We define the function for publishing values...It invoked only when it's subscribed....Untill the consumers function complete or till unsuscribing it
+
+Observable is able to send any kind of messages(i.e.,Data)..both the sending and reciving data is handled by observables.
+We only decide when we have to subscribe and unsubscribe the data.
+That's why observables are widely used...
+ Publisher create observable instance...that instance defines the subscriber fucntion..
+When the consumer called the subscriber() above func is invoked....this defines how to obtain or generate values or messages to be published
